@@ -1,0 +1,17 @@
+{:dataset/id "cloud-itonami/hayari-data"
+ :dataset/role :persistence
+ :dataset/source-repo "cloud-itonami/hayari"
+ :dataset/adr ["adr-2608103000-hayari-cross-country-attention-observatory"]
+ :dataset/remotes [{:name "kotobase" :host "s3.kotobase.net"
+                    :bucket "cloud-itonami-hayari-data"
+                    ;; ADR-2608100100 実測: この surface の bytes は B2 の
+                    ;; s3.us-west-004 に落ちる。独立した 2 コピーではない。
+                    :backing "b2 s3.us-west-004"
+                    :independent? false}]
+ :dataset/licenses {"raw/**" "CC0-1.0 (Wikidata) + 観測メタデータ"
+                    "corpus/hayari-content.edn" "CC-BY-SA-4.0 (Wikipedia contributors)"
+                    "corpus/hayari-entities.edn" "CC0-1.0 (Wikidata contributors)"}
+ :dataset/refetchable-from "2021-01-01"
+ :dataset/note
+ "上流は 2021-01-01 以降を再取得可能にしているが、保持を約束してはいない。
+  ここが残すのは『観測した時点のバイト』であって、再取得で得られる『今の答え』ではない。"}

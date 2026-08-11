@@ -1,3 +1,13 @@
-* annex.backend=MD5E
+* annex.backend=SHA256E
 **/.git* annex.largefiles=nothing
-* annex.largefiles=((mimeencoding=binary)and(largerthan=0))
+
+# 既定（text2git）は「binary なら annex」なので、EDN は text 扱いで git に入る。
+# 観測は 1 日あたり約 0.6 MB・2,046 日ぶん貯まる予定なので、それを git 履歴に
+# 積むと 600 MB 級の repo になる。**大きさは形式ではなく量で決まる。**
+raw/**    annex.largefiles=anything
+corpus/** annex.largefiles=anything
+
+# 小さいメタデータは git に置く（annex 化すると内容未取得の clone で読めなくなる）。
+README.md      annex.largefiles=nothing
+manifest.edn   annex.largefiles=nothing
+.gitattributes annex.largefiles=nothing
